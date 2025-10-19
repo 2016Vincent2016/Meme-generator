@@ -1,32 +1,42 @@
 from PIL import Image, ImageDraw, ImageFont
-
 print("Генератор мемов запущен!")
-top_text = input("Введи верхний текст: ")
-bottom_text = input("Введи нижний текст: ")
+top_text = input("Введи короткий верхний текст: ")
+bottom_text = input("Введи короткий нижний текст: ")
 
-list_of_images = ["1. Кошка в очках ", "2. Собака с пистолетом"]
+list_of_images = ["1. Кот в костюмной шляпе", "2. Жираф в очках"]
 print("Список картинок: ")
 for image_tittle in list_of_images:
     print(image_tittle)
 
 user_image = input("Введите номер картинки: ")
 if user_image == "1":
-    image_file = "./images/Кошка в очках.png"
+    image_file = "./images/Кот в костюмной шляпе.png"
     print(image_file)
 elif user_image == "2":
-    image_file = "./images/Собака с пистолетом.png"
+    image_file = "./images/Жираф в очках.png"
     print(image_file)
 
 image = Image.open(image_file)
 draw = ImageDraw.Draw(image)
 
-google_font = "https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap"
-font = ImageFont.truetype("arial.ttf", size=25)
 
-draw.text((5, 0), top_text, font=font, fill="brown")
-draw.text((5, 50), bottom_text, font=font, fill="brown")
+width, height = image.size
+
+font = ImageFont.truetype("arial.ttf", size=100)
+
+text = draw.textbbox((0, 0), top_text, font)
+text_width = text[2]
+draw.text(((width - text_width) / 2, 10), top_text, font=font, fill="brown")
+text = draw.textbbox((0, 0), bottom_text, font)
+
+text_width = text[2]
+text_height = text[3]
+draw.text(((width - text_width) / 2, height - text_height - 10), bottom_text, font=font, fill="brown")
+text = draw.textbbox((0, 0), top_text, font)
 
 image.save("new_image.png")
+print("Ваш мем сохранён как 'new_image.png'")
+
 
 
 
