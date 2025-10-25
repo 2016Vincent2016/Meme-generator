@@ -3,17 +3,17 @@ print("Генератор мемов запущен!")
 top_text = input("Введи короткий верхний текст: ")
 bottom_text = input("Введи короткий нижний текст: ")
 
-list_of_images = ["1. Кот в костюмной шляпе", "2. Жираф в очках"]
+list_of_images = ["1. Выдры", "2. Пингвины"]
 print("Список картинок: ")
 for image_tittle in list_of_images:
     print(image_tittle)
 
 user_image = input("Введите номер картинки: ")
 if user_image == "1":
-    image_file = "./images/Кот в костюмной шляпе.png"
+    image_file = "./images/Пингвины.png"
     print(image_file)
 elif user_image == "2":
-    image_file = "./images/Жираф в очках.png"
+    image_file = "./images/Выдры.png"
     print(image_file)
 
 image = Image.open(image_file)
